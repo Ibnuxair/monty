@@ -58,6 +58,7 @@ typedef struct info_s
 }  info_t;
 
 /* prototypes */
+void execute(int argc, char *argv[]);
 void push(stack_t **stack, unsigned int line_number);
 
 #endif
