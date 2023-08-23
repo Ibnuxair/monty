@@ -1,0 +1,13 @@
+This error message occurs when the compiler encounters a reference to the type `FILE` but can't find the definition for it. 
+
+`FILE` is a type used in the standard library to represent a file stream. It is defined in the `stdio.h` header file. So, you need to make sure that the `stdio.h` header file is included in your program.
+
+You can fix this error by including the `stdio.h` header file in your `monty.h` header file or in the `monty.c` source file:
+
+```c
+#include <stdio.h>
+
+/* rest of your code */
+```
+
+By including `stdio.h`, you are telling the compiler that you need the definition of `FILE` and other standard library functions and types declared in `stdio.h`.
