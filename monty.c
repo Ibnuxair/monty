@@ -20,7 +20,7 @@ void execute(int argc, char *argv[])
 {
 	info_t info = {0, NULL, NULL, NULL};
 
-	/* info.file = fopen(argv[1], "r"); */
+	info.file = fopen(argv[1], "r");
 	if (!info.file)
 	{
 		/* If the file coudn't be found */
