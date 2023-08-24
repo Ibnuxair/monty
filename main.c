@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	loop(argv, fd);
+	exec(fd);
 
 	fclose(fd);
 	return (EXIT_SUCCESS);
