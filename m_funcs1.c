@@ -20,20 +20,23 @@ void mon_push(stack_t **stack, unsigned int line_num)
 
 	if (op_tokens[1] == NULL)
 	{
-		fprintf(stderr, "L%d: no value provided\n", line_num);
+		fprintf(stderr, "L%u: usage: push integer\n", line_num);
+		free(new_node);
 		exit(EXIT_FAILURE);
 	}
 
 	for (i = 0; op_tokens[1][i]; i++)
 	{
-		if (op_tokens[1][i] == '-' && i == 0)
+		if (i == 0 && (op_tokens[1][i] == '-' || op_tokens[1][i] == '+'))
 			continue;
 		if (op_tokens[1][i] < '0' || op_tokens[1][i] > '9')
 		{
-			fprintf(stderr, "L%d: provide an integer value!\n", line_num);
+			fprintf(stderr, "L%u: usage: push integer\n", line_num);
+			free(new_node);
 			exit(EXIT_FAILURE);
 		}
 	}
+
 	new_node->n = _atoi(op_tokens[1]);
 	new_node->prev = NULL;
 	new_node->next = *stack;
