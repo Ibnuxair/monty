@@ -1,13 +1,15 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-/* Header files */
-#include <stdlib.h>
+/* Headers */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <fcntl.h>
+#include <limits.h>
+
+#define DELIM " \n\t\a\b"
+
+extern char **op_tokens;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -20,9 +22,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -35,34 +37,19 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct info_s - This is the function used for 
- * all the infomations in the monty program
- * @file_line: this is used to store the file line
- * @file: this is the file to open
- * @arg_file: this is the file name in executing
- * the program
- * @content: the content of the file
- */
+/* Function prototypes */
+void exec(FILE *fd);
+void (*find_instruction(char *opcode))(stack_t**, unsigned int);
+char **lineTokenizer(char *line, int *tokensNum);
+char **splitLine(char *line);
+int _atoi(char *s);
+size_t _strlen(const char *s);
+char *_strcpy(char *dest, char *src);
+void mon_push(stack_t **stack, unsigned int line_num);
+void mon_pall(stack_t **stack, unsigned int line_num);
 
-typedef struct info_s
-{
-	unsigned int file_line;
-	FILE *file;
-	char *arg_file;
-	char *content;
-}  info_t;
-
-extern info_t info;
-
-/* prototypes */
-void execute(int argc, char *argv[]);
-void push_func(stack_t **stack, unsigned int line_number);
-void pall_func(stack_t **stack, unsigned int line_number);
-void pint_func(stack_t **stack, unsigned int line_number);
-
-#endif
+#endif /* ENDIF */
