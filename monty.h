@@ -61,7 +61,8 @@ extern info_t info;
 
 /* prototypes */
 void execute(int argc, char *argv[]);
-void push(stack_t **head, unsigned int line_number);
-void pall_file(stack_t **head, unsigned int line_number);
+void push_func(stack_t **stack, unsigned int line_number);
+void pall_func(stack_t **stack, unsigned int line_number);
+void pint_func(stack_t **stack, unsigned int line_number);
 
 #endif
