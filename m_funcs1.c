@@ -82,3 +82,26 @@ void mon_pint(stack_t **stack, unsigned int line_num)
 
 	printf("%d\n", (*stack)->n);
 }
+
+/**
+ * mon_pop -  Removes the top element of the stack.
+ * @stack: A pointer to the top mode.
+ * @line_num: The current working line number of the bytecode.
+ */
+void mon_pop(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	if (*stack)
+		(*stack)->prev = NULL;
+
+	free(tmp);
+}

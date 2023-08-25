@@ -52,4 +52,5 @@ char *_strcpy(char *dest, char *src);
 void mon_push(stack_t **stack, unsigned int line_num);
 void mon_pall(stack_t **stack, unsigned int line_num);
 void mon_pint(stack_t **stack, unsigned int line_num);
+void mon_pop(stack_t **stack, unsigned int line_num);
 #endif /* ENDIF */
