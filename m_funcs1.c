@@ -113,20 +113,20 @@ void mon_pop(stack_t **stack, unsigned int line_num)
  */
 void mon_swap(stack_t **stack, unsigned int line_num)
 {
-    stack_t *tmp;
+	stack_t *tmp;
 
-    if (*stack == NULL || (*stack)->next == NULL)
-    {
-        fprintf(stderr, "L%u: can't swap, stack too short\n", line_num);
-	exit(EXIT_FAILURE);
-    }
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_num);
+		exit(EXIT_FAILURE);
+	}
 
-    tmp = (*stack)->next;
-    (*stack)->next = tmp->next;
-    if (tmp->next)
-        tmp->next->prev = *stack;
-    tmp->next = *stack;
-    (*stack)->prev = tmp;
-    tmp->prev = NULL;
-    *stack = tmp;
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	if (tmp->next)
+		tmp->next->prev = *stack;
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	tmp->prev = NULL;
+	*stack = tmp;
 }

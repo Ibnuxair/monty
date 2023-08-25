@@ -2,7 +2,7 @@
 
 /**
  * mon_add - Adds the top two elements of the stack.
- * * @stack: A pointer to the top mode.
+ * @stack: A pointer to the top mode.
  * @line_num: The current working line number of the bytecode.
  */
 void mon_add(stack_t **stack, unsigned int line_num)
@@ -20,4 +20,15 @@ void mon_add(stack_t **stack, unsigned int line_num)
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
 	free(tmp);
+}
+
+/**
+ * mon_nop - Doesn’t do anything.
+ * @stack: A pointer to the top mode.
+ * @line_num: The current working line number of the bytecode.
+ */
+void mon_nop(stack_t **stack, unsigned int line_num)
+{
+	(void)stack;
+	(void)line_num;
 }
