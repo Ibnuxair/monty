@@ -66,3 +66,19 @@ void mon_pall(stack_t **stack, unsigned int line_num)
 		tmp = tmp->next;
 	}
 }
+
+/**
+ * mon_pint - prints the value at the top of the stack, followed by a new line
+ * @stack: A pointer to the top mode.
+ * @line_num: The current working line number of the bytecode.
+ */
+void mon_pint(stack_t **stack, unsigned int line_num)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%d\n", (*stack)->n);
+}
