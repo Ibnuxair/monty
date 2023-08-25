@@ -19,6 +19,7 @@ void (*find_instruction(char *opcode))(stack_t**, unsigned int)
 		{"pint", mon_pint},
 		{"pop", mon_pop},
 		{"swap", mon_swap},
+		{"add", mon_add},
 		{NULL, NULL}
 		/* Add more instructions as needed */
 	};

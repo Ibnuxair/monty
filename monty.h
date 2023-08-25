@@ -54,5 +54,6 @@ void mon_pall(stack_t **stack, unsigned int line_num);
 void mon_pint(stack_t **stack, unsigned int line_num);
 void mon_pop(stack_t **stack, unsigned int line_num);
 void mon_swap(stack_t **stack, unsigned int line_num);
+void mon_add(stack_t **stack, unsigned int line_num);
 
 #endif /* ENDIF */
