@@ -14,15 +14,13 @@ void mon_push(stack_t **stack, unsigned int line_num)
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		malloc_err();
 	}
 
 	if (op_tokens[1] == NULL)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_num);
 		free(new_node);
-		exit(EXIT_FAILURE);
+		no_int_err(line_num);
 	}
 
 	for (i = 0; op_tokens[1][i]; i++)
@@ -31,9 +29,8 @@ void mon_push(stack_t **stack, unsigned int line_num)
 			continue;
 		if (op_tokens[1][i] < '0' || op_tokens[1][i] > '9')
 		{
-			fprintf(stderr, "L%u: usage: push integer\n", line_num);
 			free(new_node);
-			exit(EXIT_FAILURE);
+			no_int_err(line_num);
 		}
 	}
 

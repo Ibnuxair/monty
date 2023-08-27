@@ -15,11 +15,11 @@ char **lineTokenizer(char *line, int *tokensNum)
 	if (!lineCopy)
 		return (NULL);
 	_strcpy(lineCopy, line);
-	token = strtok(lineCopy, DELIM);
+	token = strtok(lineCopy, DELIMS);
 	while (token)
 	{
 		(*tokensNum)++;
-		token = strtok(NULL, DELIM);
+		token = strtok(NULL, DELIMS);
 	}
 
 	tokens = malloc(sizeof(*tokens) * ((*tokensNum) + 1));
@@ -29,7 +29,7 @@ char **lineTokenizer(char *line, int *tokensNum)
 		return (NULL);
 	}
 	_strcpy(lineCopy, line);
-	token = strtok(lineCopy, DELIM);
+	token = strtok(lineCopy, DELIMS);
 	while (token)
 	{
 		tokens[i] = malloc(sizeof(char) * (_strlen(token) + 1));
@@ -43,7 +43,7 @@ char **lineTokenizer(char *line, int *tokensNum)
 		}
 		_strcpy(tokens[i], token);
 		i++;
-		token = strtok(NULL, DELIM);
+		token = strtok(NULL, DELIMS);
 	}
 	tokens[i] = NULL;
 	free(lineCopy);

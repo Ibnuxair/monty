@@ -7,8 +7,9 @@
 #include <string.h>
 #include <limits.h>
 
-#define DELIM " \n\t\a\b"
+#define DELIMS " \n\t\a\b"
 
+/* Global variable **/
 extern char **op_tokens;
 
 /**
@@ -41,14 +42,18 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* Function prototypes */
-void exec(FILE *fd);
+/* Primary monty enterpreter functions prototypes */
+int exec(FILE *fd);
 void (*find_instruction(char *opcode))(stack_t**, unsigned int);
 char **lineTokenizer(char *line, int *tokensNum);
 char **splitLine(char *line);
 int _atoi(char *s);
 size_t _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
+void free_tokens(void);
+void free_stack(stack_t **stack);
+
+/* Opcode functions prototypes */
 void mon_push(stack_t **stack, unsigned int line_num);
 void mon_pall(stack_t **stack, unsigned int line_num);
 void mon_pint(stack_t **stack, unsigned int line_num);
@@ -56,5 +61,12 @@ void mon_pop(stack_t **stack, unsigned int line_num);
 void mon_swap(stack_t **stack, unsigned int line_num);
 void mon_add(stack_t **stack, unsigned int line_num);
 void mon_nop(stack_t **stack, unsigned int line_num);
+
+/* Error messages and error codes functions prototypes */
+int usage_err(void);
+int open_file_err(char **argv);
+int invalid_op_err(char *opcode, unsigned int line_num);
+int no_int_err(unsigned int line_num);
+int malloc_err(void);
 
 #endif /* ENDIF */
