@@ -15,12 +15,14 @@ void mon_push(stack_t **stack, unsigned int line_num)
 	if (new_node == NULL)
 	{
 		malloc_err();
+		return;
 	}
 
 	if (op_tokens[1] == NULL)
 	{
 		free(new_node);
 		no_int_err(line_num);
+		return;
 	}
 
 	for (i = 0; op_tokens[1][i]; i++)
@@ -31,6 +33,7 @@ void mon_push(stack_t **stack, unsigned int line_num)
 		{
 			free(new_node);
 			no_int_err(line_num);
+			return;
 		}
 	}
 

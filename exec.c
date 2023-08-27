@@ -54,7 +54,7 @@ int is_line_empty(char *line, char *delims)
  */
 void (*find_instruction(char *opcode))(stack_t**, unsigned int)
 {
-	size_t i, op_num;
+	size_t i;
 	instruction_t instructions[] = {
 		{"push", mon_push},
 		{"pall", mon_pall},
@@ -67,9 +67,9 @@ void (*find_instruction(char *opcode))(stack_t**, unsigned int)
 		/* Add more instructions as needed */
 	};
 
-	op_num = sizeof(instructions) / sizeof(instructions[0]);
+	/*op_num = sizeof(instructions) / sizeof(instructions[0]);*/
 
-	for (i = 0; i < op_num; i++)
+	for (i = 0; instructions[i].opcode; i++)
 	{
 		if (strcmp(opcode, instructions[i].opcode) == 0)
 		{
@@ -116,11 +116,11 @@ int exec(FILE *fd)
 			op_func(&stack, line_num);
 		else
 		{
-			free_stack(&stack);
 			status = invalid_op_err(op_tokens[0], line_num);
+			free_stack(&stack);
 			free_tokens();
 			free(line);
-			return (status);
+			return (EXIT_FAILURE);
 		}
 	}
 	free_stack(&stack);
